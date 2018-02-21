@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+<!-- блок для заголовка -->
+{% block title %}
+    Apology
+{% endblock %}
+
+{% block main %}
+    <!-- тег «img» – для вставки графического изображения на веб-страницу -->
+    <img alt="{{ top }}" class="border" src="http://memegen.link/custom/{{ top | urlencode }}/{{ bottom | urlencode }}.jpg?alt=http://cikavo-znaty.com/wp-content/uploads/2017/05/1387026468_img0022.png"/>
+{% endblock %}

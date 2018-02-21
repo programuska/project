@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <!-- тег «form» – поле для ввода данных, устанавливает форму на веб-странице -->
+    <!-- атрибут «method» - post  – данные формы отправляются на сервер в теле запроса-->
+    <form action="{{ url_for('register') }}" method="post">
+        <!-- тег «fieldset» – поле для группировки элементов формы внутри <form> -->
+        <fieldset>
+           <!-- тег «legend» – поле для легенды, заголовок <fieldset> -->
+           <legend><font color=HotPink>C$50 Finalproject</font></legend>
+                <!-- тег – div – блочный контейнер, атрибут - class - задает стилевой класс -->
+                <div class="form-group">
+                    <!-- тег «input» - запросить,  атрибут «class» - задает стилевой класс,-->
+                    <!-- атрибут «name» - задаёт имя файла, атрибут  «type» - тип файла -->
+                    <!-- атрибут «placeholder» - задаёт инструкцию для заполнения -->
+                    <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"/>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" name="password" placeholder="Password" type="password"/>
+                </div>
+
+                <div class="form-group">
+                    <input class="form-control" name="confirmation" placeholder="Сonfirmation password" type="password"/>
+                </div>
+
+            <!-- button – кнопка, для отправки на сервер, тип - submit -->
+            <button class="btn btn-primary" type="submit">Register</button>
+
+        </fieldset>
+    </form>
+{% endblock %}

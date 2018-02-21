@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Consumption
+{% endblock %}
+
+{% block main %}
+    <main class="container p-5">
+        <!-- тег «form» – поле для ввода данных, устанавливает форму на веб-странице -->
+        <!-- атрибут «method» - post  – данные формы отправляются на сервер в теле запроса-->
+        <form action="/consumption" method="post">
+            <!-- тег «fieldset» – поле для группировки элементов формы внутри <form> -->
+            <fieldset>
+                <!-- тег – div – блочный контейнер, атрибут - class - задает стилевой класс -->
+                <div class="form-group">
+                    <!-- тег – select – создаёт скролируемое меню с именем symbol, показанным на экране-->
+                    <!-- остальные пункты меню будут доступны при прокрутке-->
+                    <select class="form-control" name="consumption">
+                        <!-- тег – option – указывает каждый отдельный элемент меню -->
+                        <option disabled selected value="">
+                            Part code(Шифр детали)
+                        </option>
+                            <!-- Выбор шифра изделия для проводки -->
+                            {% for code in choicecode %}
+                                <option value="{{ code["part_code"] }}">{{ code["part_code"] }}</option>
+                            {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <!-- тег «input» - запросить,  атрибут «class» - задает стилевой класс,-->
+                    <!-- атрибут «name» - задаёт имя файла, атрибут  «type» - тип файла -->
+                    <input autocomplete="off" class="form-control" min="0" name="quantity" placeholder="Quantity(Кол-во)" type="number"/>
+                </div>
+                <div class="form-group">
+                    <!-- button – кнопка, для отправки на сервер, тип - submit -->
+                    <button class="btn btn-primary" type="submit">
+                        Consumption
+                    </button>
+                </div>
+            </fieldset>
+        </form>
+    </main>
+{% endblock %}

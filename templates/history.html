@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+    <!-- этот блок задаёт заголовок для таблицы -->
+    <!-- тег «p» - задаёт абзац текстф -->
+    <p>
+        <!-- тег <font> - задаёт цвет текста -->
+        <font color=Lime>
+            <!-- тег «b» - задаёт жирный текст -->
+            <b>
+                Transaction history of the user {{ username }} (История транзакций пользователя {{ username }})
+            </b>
+        </font>
+    </p>
+
+    <!-- тег «table» - задаёт поле для таблицы -->
+    <table class="table table-striped" style="width:100%">
+
+    <colgroup>
+        <!-- фон для таблицы - жёлтый, 6 столбиков -->
+        <col style="background-color: Yellow" span="6">
+    </colgroup>
+
+        <!-- тег «tr» - задаёт начало и конец ряда -->
+        <tr>
+            <!-- тег «th» - задаёт ячейки внутри ряда -->
+            <!-- в ячейках - название полей таблицы -->
+            <th>
+                <font color=Blue>
+                    Part code<dl>(Шифр детали)</dl>
+                </font>
+            </th>
+            <th>
+                <font color=Blue>
+                    Detail name<dl>(Наименование)</dl>
+                </font>
+            </th>
+            <th nowrap>
+                <font color=Blue>
+                    Quantity<dl>(Кол-во,шт)</dl>
+                </font>
+            </th>
+            <th>
+                <font color=Blue>
+                    Price<dl>(Цена,грн)</dl>
+                </font>
+            </th>
+            <th nowrap>
+                <font color=Blue>
+                    Date<dl>(Дата)</dl>
+                </font>
+            </th>
+        </tr>
+
+    <!-- блок для заполнения таблицы истории событий -->
+    {% for history in histories %}
+        <tr>
+            <td>
+                {{ history.part_code }}
+            </td>
+            <td>
+                {{ history.detail_name }}
+            </td>
+            <td>
+                {{ history.quantity }}
+            </td>
+            <td nowrap>
+                {{ history.price }}
+            </td>
+            <td nowrap>
+                {{ history.date }}
+            </td>
+        </tr>
+    {% endfor %}
+
+    </table>
+{% endblock %}

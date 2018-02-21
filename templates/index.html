@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+
+    <!-- тег «b» - задаёт жирный текст -->
+    <b>
+        <!-- тег <font> - задаёт цвет текста -->
+        <font color=Gold>
+            Warehouse condition (Состояние склада)
+        </font>
+    </b>
+
+<!-- тег «table» - задаёт поле для таблицы, ширина 100% -->
+<table class="table table-striped" style="width:100%">
+
+    <!-- тег «colgroup» - задаёт фоновый рисунка для таблицы, цвет - Cyan, 5 столбиков -->
+    <colgroup>
+    <col style="background-color: Cyan" span="5">
+    </colgroup>
+
+        <!-- тег «tr» - задаёт начало и конец ряда -->
+        <tr>
+            <!-- тег «th» - задаёт ячейки внутри ряда -->
+            <th>
+                <!-- тег <font> - задаёт цвет текста -->
+                <font color=Fuchsia>
+                    Part code<dl>(Шифр детали)</dl>
+                </font>
+            </th>
+            <th>
+                <font color=Fuchsia>
+                    Detail name<dl>(Название детали)</dl>
+                </font>
+            </th>
+            <th>
+                <font color=Fuchsia>
+                    Quantity<dl>(Кол-во,шт)</dl>
+                </font>
+            </th>
+            <th>
+                <font color=Fuchsia>
+                    Price<dl>(Цена,грн)</dl>
+                </font>
+            </th>
+            <th>
+                <font color=Fuchsia>
+                    TOTAL<dl>(ВСЕГО,грн)</dl>
+                </font>
+            </th>
+        </tr>
+
+    <!-- блок для вывода таблицы с информацией с загрузкой значений из базы с помощью цикла for -->
+    {% for stock in stocks %}
+        <tr>
+            <td>
+                {{ stock.part_code }}
+            </td>
+            <td>
+                {{ stock.detail_name }}
+            </td>
+            <td>
+                {{ stock.quantity }}
+            </td>
+            <td>
+                {{ stock.price }}
+            </td>
+            <td>
+                {{ stock.total_price }}
+            </td>
+        </tr>
+    {% endfor %}
+
+        <!-- блок для вывода итогов таблицы -->
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <!-- тег «b» - задаёт жирный шрифт -->
+                <b>
+                    {{ total }}
+                </b>
+            </td>
+        </tr>
+
+</table>
+{% endblock %}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <!-- тег <body> - задаёт тело формы -->
+    <body background="static/more.jpg" bgproperties="fixed">
+        <marquee bgcolor=Cyan direction="slide"><font color=Blue>автор проекта - Мария Соколенко</font><img src="http://portalion.clan.su/smile/aj.gif"></marquee>
+
+        <audio  controls>
+           <source src="static/Андрей Петров - Вальс.mp3" type="audio/mpeg">
+        </audio>
+
+        <a href="static/foto.jpg"><b><font color="HotPink">Моё фото!</font></b></a>
+        <a href="http://www.zaz.ua"><b><font color="HotPink">Место работы - ЗАЗ!</font></b></a>
+
+        <!-- Required meta tags - Необходимые метатеги -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <!-- documentation at http://getbootstrap.com/docs/4.0/, alternative themes at https://bootswatch.com/4-alpha/ -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="/static/styles.css" rel="stylesheet"/>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+        <title>C$50 Finalproject: {% block title %}{% endblock %}</title>
+
+        <nav class="navbar navbar-expand-md navbar-light bg-light border">
+            <a class="navbar-brand" href="/">
+                <span class="Tomato">C</span><span class="Cyan">$</span><span class="Yellow">5</span><span class="Lime">0</span>
+                <span class="Fuchsia">Finalproject<img src="http://portalion.clan.su/smile/az.gif"></span>
+            </a>
+        <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                {% if session.user_id %}
+                    <!-- маркированный список -->
+                    <ul class="navbar-nav mr-auto mt-2">
+                        <!-- элементы маркированного списка с информацией -->
+                        <li class="nav-item"><a class="nav-link" href="/choice"><h6><font color="blue"><center>
+                            Part code<dl>(Справочник)</dl></center></font></h6></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/coming"><h6><font color="green"><center>
+                            Coming<dl>(Приход)</dl></center></font></h6></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/consumption"><h6><font color="red"><center>
+                            Consumption<dl>(Расход)</dl></center></font></h6></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/history"><h6><font color="Gold"><center>
+                            History<dl>(История)</dl></center></font></h6></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/historys"><h6><font color="Lime"><center>
+                            Historys<dl>(Общая история)</dl></center></font></h6></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout"><h6><font color="HotPink"><center>
+                            LogOut<dl>(Выход)</dl></center></font></h6></a></li>
+                        <!-- добавляем элементы маркированного списка для кнопки нового пароля -->
+                        <li class="nav-item"><a class="nav-link" href="/password"><h6><font color="Orange"><center>
+                            NewPass<dl>(Смена пароля)</dl></center></font></h6></a></li>
+                    </ul>
+                {% else %}
+                    <ul class="navbar-nav ml-auto mt-2">
+                        <li class="nav-item"><a class="nav-link" href="/register"><h6><font color="Orange"><center>
+                            Register<dl>(Регистрация)</dl></center></font></h6></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login"><h6><font color="green"><center>
+                            Log In<dl>(Вход)</dl></center></font></h6></a></li>
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <!-- секция для вводной информации сайта или навигационных ссылок -->
+            <header>
+                <div class="alert alert-primary border text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <!-- сюда вкладываюся наши блоки из разных html-файлов в момент выбора опций -->
+        <main class="container p-5">
+            {% block main %}{% endblock %}
+        </main>
+
+    <!-- далее создаётся карта - заданы стили, маркер с иконкой и анимацией, заголовок -->
+    <style>
+       #map {
+        height: 350px;
+        width: 100%;
+       }
+    </style>
+
+    <h6><font color="HotPink"><b><center>I live in Ukraine</center></b></font></h6>
+
+    <div id="map"></div>
+
+    <script>
+        function initMap()
+        {
+            var uluru = {lat: 47.773234, lng: 35.193263};
+            var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+            });
+            var image = "http://maps.google.com/mapfiles/kml/pal3/icon21.png";
+            var marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+            icon: image,
+            animation: google.maps.Animation.BOUNCE
+            });
+            var styles = [{
+                "featureType": "water",
+                "stylers":
+                [{
+                    "color": "#3DE3FF"
+                }]
+            }];
+            map.setOptions({styles: styles});
+        }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIBOa61XbW9T8Dz4WHlz42jPILTVKzSOE&callback=initMap">
+    </script>
+
+    </body>
+</html>

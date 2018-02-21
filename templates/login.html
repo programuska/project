@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+<!-- блок заголовка -->
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <!-- тег «form» – поле для ввода данных, устанавливает форму на веб-странице -->
+    <!-- атрибут «method» - post  – данные формы отправляются на сервер в теле запроса-->
+    <form action="/login" method="post">
+
+    <b>
+        <font color=Gold>
+             Warehouse employees (Работники склада)
+        </font>
+    </b>
+        <p><img src="static/kotik1.jpg" width="150" height="100" align="right" valign="top"><font color="blue">Dusya</font></p>
+        <p><img src="static/kotik2.jpg" width="150" height="100" align="right" valign="top"><font color="blue">Nusya</font></p>
+        <p><img src="static/kotik4.jpg" width="150" height="100" align="right" valign="top"><font color="blue">Musya</font></p>
+        <p><img src="static/kotik3.jpg" width="150" height="100" align="right" valign="top"><font color="blue">Lusya</font></p>
+        <p><img src="static/kotik5.jpg" width="150" height="100" align="right" valign="top"><font color="blue">Vasya</font></p>
+
+        <!-- тег – div – блочный контейнер, атрибут - class - задает стилевой класс -->
+        <div class="form-group" align="left" valign="top">
+            <select class="form-control" name="username">
+                <!-- тег – option – указывает каждый отдельный элемент меню -->
+                <option disabled selected value="">
+                    Пользователь
+                </option>
+                <!-- Выбор username для проводки -->
+                {% for login in logins %}
+                    <option value="{{ login["username"] }}">{{ login["username"] }}</option>
+                {% endfor %}
+            </select>
+            <br><input class="form-control" name="password" placeholder="Пароль" type="password"/>
+            <!-- button – кнопка, для отправки на сервер, тип - submit -->
+            <br><button class="btn btn-primary" type="submit">Log In</button>
+        </div>
+    </form>
+{% endblock %}

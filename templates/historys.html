@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Historys
+{% endblock %}
+
+{% block main %}
+
+    <!-- смайлики для таблицы -->
+    <a target="_blank" href="http://smayliki.ru/smilie-1282420455.html"><img src="http://s20.rimg.info/a42effa8d5aacdccbff3ce11652520d9.gif" ></a>
+    <a target="_blank" href="http://smayliki.ru/smilie-1373918631.html"><img src="http://s21.rimg.info/a5318e6dc66004ae6e37de1525410bae.gif" ></a>
+
+    <!-- этот блок задаёт заголовок для таблицы -->
+    <!-- тег «p» - задаёт абзац текстф -->
+    <p>
+        <!-- тег «b» - задаёт жирный текст -->
+        <b>
+            <!-- тег <font> - задаёт цвет текста -->
+            <font color=Orange>
+                General Transaction History (Общая история транзакций)
+            </font>
+        </b>
+    </p>
+
+    <!-- тег «table» - задаёт поле для таблицы -->
+    <table class="table table-striped" style="width:100%">
+
+    <!-- фон для таблицы - розовый -->
+    <colgroup>
+        <col style="background-color: #FC97CA" span="5">
+    </colgroup>
+
+        <!-- тег «tr» - задаёт начало и конец ряда -->
+        <tr>
+            <!-- тег «th» - задаёт ячейки внутри ряда -->
+            <!-- в ячейках - название полей таблицы -->
+            <th>
+                <font color=Blue>
+                    id<dl>(Код)</dl>
+                </font>
+            </th>
+            <th>
+                <font color=Blue>
+                    Username<dl>(Имя пользователя)</dl>
+                </font>
+            </th>
+            <th>
+                <font color=Blue>
+                    Part code<dl>(Шифр детали)</dl>
+                </font>
+            </th>
+            <th nowrap>
+                <font color=Blue>
+                    Quantity<dl>(Кол-во,шт)</dl>
+                </font>
+            </th>
+            <th nowrap>
+                <font color=Blue>
+                    Date<dl>(Дата)</dl>
+                </font>
+            </th>
+        </tr>
+
+    <!-- блок для заполнения таблицы истории событий -->
+    {% for historys in histories %}
+        <tr>
+            <td>
+                {{ historys.id }}
+            </td>
+            <td>
+                {{ historys.username }}
+            </td>
+            <td>
+                {{ historys.part_code }}
+            </td>
+            <td>
+                {{ historys.quantity }}
+            </td>
+            <td nowrap>
+                {{ historys.date }}
+            </td>
+        </tr>
+    {% endfor %}
+
+    </table>
+{% endblock %}

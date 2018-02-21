@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <!-- заголовок "Choiced" -->
+    Choiced
+{% endblock %}
+
+{% block main %}
+    <!-- тег «p» – тег обзаца параграфа на веб-странице -->
+    <p>
+        <font color="Blue">
+            <b>
+                Цена детали {{ part_code }} с названием"{{ detail_name }}" составляет {{ price }} грн ({{ dollarprice }})
+            </b>
+        </font>
+    </p>
+{% endblock %}

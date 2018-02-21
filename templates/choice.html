@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    <!-- заголовок "choice" -->
+    Choice
+{% endblock %}
+
+        {% block main %}
+
+            <!-- тег «form» – поле для ввода данных, устанавливает форму на веб-странице -->
+            <!-- атрибут «method» - post  – данные формы отправляются на сервер в теле запроса-->
+            <form action="/choice" method="post">
+                <!-- тег – div – блочный контейнер, атрибут - class - задает стилевой класс -->
+                <div class="form-group" align="left" valign="top">
+                    <!-- тег – select – создаёт скролируемое меню с именем symbol, показанным на экране-->
+                    <!-- остальные пункты меню будут доступны при прокрутке-->
+                    <select class="form-control" name="choice">
+                        <!-- тег – option – указывает каждый отдельный элемент меню -->
+                        <option disabled selected value="">
+                            Part code(Шифр детали)
+                        </option>
+                            <!-- Выбор шифра изделия для справки -->
+                            {% for code in choicecode %}
+                                <option value="{{ code["part_code"] }}">{{ code["part_code"] }}</option>
+                            {% endfor %}
+                    </select>
+
+                    <!-- button – кнопка, для отправки на сервер, тип - submit -->
+                    <!-- <br> - перенос на новую строку -->
+                    <br><button class="btn btn-primary" type="submit">
+                        Choice-Выбор
+                    </button>
+                </div>
+            </form>
+
+            <form>
+                <div class="form-group" align="right" valign="top">
+                    <b>
+                    <p><a><font color="HotPink">Посмотреть чертёж</font></a></p>
+                    <p><a href="static/SF6950-1001010.jpg"><font color="HotPink">SF6950-1001010</font></a></p>
+                    <p><a href="static/SF6950-1001021.jpg"><font color="HotPink">SF6950-1001021</font></a></p>
+                    <p><a href="static/SF6950-2802025.jpg"><font color="HotPink">SF6950-2802025</font></a></p>
+                    <p><a href="static/SF6950-2802028.jpg"><font color="HotPink">SF6950-2802028</font></a></p>
+                    <p><a href="static/SF6950-2802029.jpg"><font color="HotPink">SF6950-2802029</font></a></p>
+                    <p><a href="static/TA69W0-1008050.jpg"><font color="HotPink">TA69W0-1008050</font></a></p>
+                    <p><a href="static/TA69W0-3724101.jpg"><font color="HotPink">TA69W0-3724101</font></a></p>
+                    <p><a href="static/TA69W0-3763021.jpg"><font color="HotPink">TA69W0-3763021</font></a></p>
+                    <p><a href="static/TF69Y0-3105080.jpg"><font color="HotPink">TF69Y0-3105080</font></a></p>
+                    <p><a href="static/TF69Y0-3105085.jpg"><font color="HotPink">TF69Y0-3105085</font></a></p>
+                    <p><a href="static/TF69Y0-3105095.jpg"><font color="HotPink">TF69Y0-3105095</font></a></p>
+                    <p><a href="static/TF69Y0-3105100.jpg"><font color="HotPink">TF69Y0-3105100</font></a></p>
+                    <p><a href="static/TF698K-3105090.jpg"><font color="HotPink">TF698K-3105090</font></a></p>
+                    </b>
+                </div>
+            </form>
+
+        {% endblock %}
